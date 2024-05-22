@@ -24,7 +24,6 @@ const Login = () => {
             <Button type="submit" variant="primary">
               로그인
             </Button>
-
             <Button variant="dark">회원가입</Button>
           </div>
         </Form>
