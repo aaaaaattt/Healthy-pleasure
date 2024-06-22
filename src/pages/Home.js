@@ -7,9 +7,9 @@ const Home = () => {
       <p>가장 먼저 보여지는 페이지입니다.</p>
       <Link to="/about">소개</Link>
       <br></br>
-      <Link to="../login">로그인</Link>
+      <Link to="/login">로그인</Link>
       <br></br>
-      <Link to="../Dashboard">Dash</Link>
+      <Link to="/Dashboard">Dash</Link>
     </div>
   );
 };
