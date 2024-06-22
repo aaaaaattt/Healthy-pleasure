@@ -5,7 +5,6 @@ import MuiDrawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
@@ -23,6 +22,8 @@ import R_Search from "./R_Search";
 import C_Search from "./C_Search";
 import useSession from "../hooks/useSession";
 import { useEffect, useState } from "react";
+import Button from "@mui/material/Button";
+
 //하단 저작권(copyright)
 function Copyright(props) {
   return (
@@ -91,6 +92,19 @@ const Drawer = styled(MuiDrawer, {
 const mdTheme = createTheme();
 
 function DashboardContent() {
+  const { Session, logout } = useSession();
+  const { login } = useSession();
+
+  const handleLogout = () => {
+    // 세션 로그아웃 처리
+    logout();
+  };
+
+  const handleLogin = () => {
+    // 로그인 처리 로직
+    login("user123"); // 예시로 userId를 'user123'으로 전달
+  };
+
   const [open, setOpen] = React.useState(true);
   const [session, setSession] = useState(null);
 
@@ -201,9 +215,12 @@ function DashboardContent() {
                   }}
                 >
                   {session ? (
-                    <Profile userId={session.userId} />
+                    <Profile userId={session.userId} onLogout={handleLogout} />
                   ) : (
-                    <Typography>세션 데이터를 로드하는 중입니다...</Typography>
+                    <div>
+                      <Typography>로그인이 필요합니다.</Typography>
+                      <Button onClick={handleLogin}>로그인</Button>
+                    </div>
                   )}
                 </Paper>
               </Grid>
